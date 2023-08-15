@@ -1,5 +1,6 @@
 package com.study.whatodo.communication.endpoint;
 
+import com.study.whatodo.communication.dto.TodoRequestDTO;
 import com.study.whatodo.persistence.model.Todo;
 import com.study.whatodo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,8 @@ public class TodoEndpoint {
     }
 
     @PostMapping("/save")
-    public Todo saveTodo(@RequestBody String text) {
-      Todo todo = new Todo();
-      todo.setText(text);
+    public Todo saveTodo(@RequestBody TodoRequestDTO todoRequestDTO) {
+      Todo todo = new Todo(todoRequestDTO.getText());
       return todoService.save(todo);
     }
 }
