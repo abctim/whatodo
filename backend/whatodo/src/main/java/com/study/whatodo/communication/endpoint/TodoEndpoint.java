@@ -22,6 +22,6 @@ public class TodoEndpoint {
     public Todo saveTodo(@RequestBody String text) {
       Todo todo = new Todo();
       todo.setText(text);
-      return todo; //placeholder for commit
+      return todoService.save(todo);
     }
 }
