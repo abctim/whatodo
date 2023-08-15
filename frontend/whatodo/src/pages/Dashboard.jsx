@@ -21,6 +21,7 @@ const Dashboard = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginBottom: 55
           }}
         >
           <InputField />
