@@ -22,6 +22,7 @@ const InputField = () => {
         variant="outlined"
         value={inputValue}
         onChange={handleChange}
+        sx={{ width: 500}}
       />
 
       <IconButton
