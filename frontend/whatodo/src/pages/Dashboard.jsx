@@ -1,10 +1,12 @@
 import React from 'react'
+import MUIAppBar from '../components/MUIAppBar'
 
 const Dashboard = () => {
   return (
-    <>
-    Dashboard
-    </>
+    <div>
+      Dashboard
+      <MUIAppBar />
+    </div>
   )
 }
 
