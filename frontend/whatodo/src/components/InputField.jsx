@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
+import { Button, TextField } from "@mui/material";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 
 const InputField = () => {
@@ -22,16 +21,18 @@ const InputField = () => {
         variant="outlined"
         value={inputValue}
         onChange={handleChange}
-        sx={{ width: '50vw'}}
+        sx={{ width: "50vw" }}
       />
 
-      <IconButton
+      <Button
+        variant="contained"
+        sx={{ height: "56px" }}
         color="primary"
         aria-label="add to todo list"
         onClick={handleClick}
       >
         <AddTaskIcon fontSize="large" />
-      </IconButton>
+      </Button>
     </div>
   );
 };
