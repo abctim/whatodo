@@ -1,6 +1,7 @@
 import React from "react";
 import MUIAppBar from "../components/MUIAppBar";
 import InputField from "../components/InputField";
+import TodoList from "../components/TodoList";
 import { Box } from "@mui/material";
 
 const Dashboard = () => {
@@ -19,12 +20,14 @@ const Dashboard = () => {
           sx={{
             flexGrow: 1,
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: 55
+            marginTop: -20,
           }}
         >
           <InputField />
+          <TodoList />
         </Box>
       </Box>
     </div>
