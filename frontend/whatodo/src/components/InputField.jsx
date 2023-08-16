@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import axios from "axios";
+import { SAVE_TODO_URL } from "../data/apiConstants";
 
 const InputField = () => {
   const [inputValue, setInputValue] = useState("");
@@ -14,7 +15,7 @@ const InputField = () => {
     console.log(inputValue);
 
     axios
-      .post("http://localhost:8080/todos/save", {
+      .post(SAVE_TODO_URL, {
         text: inputValue,
       })
       .then(function (response) {
