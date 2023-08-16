@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import AddTaskIcon from "@mui/icons-material/AddTask";
+import axios from "axios";
 
 const InputField = () => {
   const [inputValue, setInputValue] = useState("");
@@ -11,6 +12,17 @@ const InputField = () => {
 
   const handleClick = () => {
     console.log(inputValue);
+
+    axios
+      .post("http://localhost:8080/todos/save", {
+        text: inputValue,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
