@@ -6,6 +6,8 @@ import com.study.whatodo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/todos")
 public class TodoEndpoint {
@@ -21,5 +23,11 @@ public class TodoEndpoint {
     public Todo saveTodo(@RequestBody TodoRequestDTO todoRequestDTO) {
       Todo todo = new Todo(todoRequestDTO.getText());
       return todoService.save(todo);
+    }
+
+    @CrossOrigin
+    @GetMapping("/get-all")
+    public List<Todo> getAllTodos() {
+        return todoService.getAllTodos();
     }
 }
