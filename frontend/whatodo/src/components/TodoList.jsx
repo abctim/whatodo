@@ -3,11 +3,10 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 
 const TodoList = ({ todos }) => {
   const [checked, setChecked] = useState({}); // Using an object to keep track of individual checkboxes
@@ -31,7 +30,10 @@ const TodoList = ({ todos }) => {
           <List>
             {todos.map((todo) => (
               <ListItem key={todo.id} disablePadding>
-                <Checkbox checked={checked[todo.id] || false} onChange={handleCheckBoxClick(todo.id)} />
+                <Checkbox
+                  checked={checked[todo.id] || false}
+                  onChange={handleCheckBoxClick(todo.id)}
+                />
                 <ListItemText primary={todo.text} />
                 <IconButton edge="end" aria-label="edit">
                   <EditIcon />
@@ -42,8 +44,8 @@ const TodoList = ({ todos }) => {
               </ListItem>
             ))}
           </List>
+          
         </nav>
-        <Divider />
       </Box>
     </div>
   );
