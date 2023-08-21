@@ -9,11 +9,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
 import EditIcon from '@mui/icons-material/Edit';
 
-const TodoList = () => {
-  const [checked, setChecked] = useState(false);
+const TodoList = ({ todos }) => {
+  const [checked, setChecked] = useState({}); // Using an object to keep track of individual checkboxes
 
-  const handleCheckBoxClick = (event) => {
-    setChecked(event.target.checked);
+  const handleCheckBoxClick = (id) => (event) => {
+    setChecked({
+      ...checked,
+      [id]: event.target.checked,
+    });
   };
 
   return (
@@ -26,16 +29,18 @@ const TodoList = () => {
       >
         <nav aria-label="main mailbox folders">
           <List>
-            <ListItem disablePadding>
-              <Checkbox checked={checked} onChange={handleCheckBoxClick} />
-              <ListItemText primary="This is your first todo" />
-              <IconButton edge="end" aria-label="edit">
-                <EditIcon />
-              </IconButton>
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </ListItem>
+            {todos.map((todo) => (
+              <ListItem key={todo.id} disablePadding>
+                <Checkbox checked={checked[todo.id] || false} onChange={handleCheckBoxClick(todo.id)} />
+                <ListItemText primary={todo.text} />
+                <IconButton edge="end" aria-label="edit">
+                  <EditIcon />
+                </IconButton>
+                <IconButton edge="end" aria-label="delete">
+                  <DeleteIcon />
+                </IconButton>
+              </ListItem>
+            ))}
           </List>
         </nav>
         <Divider />
