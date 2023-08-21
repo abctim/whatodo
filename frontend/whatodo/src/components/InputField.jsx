@@ -11,7 +11,9 @@ const InputField = ({ addTodo }) => {
     setInputValue(event.target.value);
   };
 
-  const handleClick = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     axios
       .post(SAVE_TODO_URL, {
         text: inputValue,
@@ -30,24 +32,26 @@ const InputField = ({ addTodo }) => {
 
   return (
     <div>
-      <TextField
-        id="outlined-basic"
-        label="Enter what you want to do"
-        variant="outlined"
-        value={inputValue}
-        onChange={handleChange}
-        sx={{ width: "50vw" }}
-      />
+      <form onSubmit={handleSubmit}>
+        <TextField
+          id="outlined-basic"
+          label="Enter what you want to do"
+          variant="outlined"
+          value={inputValue}
+          onChange={handleChange}
+          sx={{ width: "50vw" }}
+        />
 
-      <Button
-        variant="contained"
-        sx={{ height: "56px" }}
-        color="primary"
-        aria-label="add to todo list"
-        onClick={handleClick}
-      >
-        <AddTaskIcon fontSize="large" />
-      </Button>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ height: "56px" }}
+          color="primary"
+          aria-label="add to todo list"
+        >
+          <AddTaskIcon fontSize="large" />
+        </Button>
+      </form>
     </div>
   );
 };
