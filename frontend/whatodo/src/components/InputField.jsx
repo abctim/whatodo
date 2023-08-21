@@ -12,14 +12,11 @@ const InputField = ({ addTodo }) => {
   };
 
   const handleClick = () => {
-    console.log(inputValue);
-
     axios
       .post(SAVE_TODO_URL, {
         text: inputValue,
       })
       .then(function (response) {
-        console.log(response); // test console log
         addTodo({
           text: response.data.text,
           id: response.data.id,
