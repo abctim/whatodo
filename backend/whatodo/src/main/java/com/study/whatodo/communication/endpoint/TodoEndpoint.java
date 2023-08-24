@@ -36,7 +36,7 @@ public class TodoEndpoint {
     }
 
     @CrossOrigin
-    @GetMapping("/delete")
+    @DeleteMapping ("/delete")
     public ResponseEntity<Void> deleteTodo(@RequestBody DeleteTodoDTO deleteTodoDTO) {
         try {
             todoService.deleteTodo(deleteTodoDTO.getId());
