@@ -18,23 +18,14 @@ const Dashboard = () => {
           display: "flex",
           flexDirection: "column",
           minHeight: "calc(100vh - 64px)",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: -20,
         }}
       >
         <MUIAppBar />
-
-        <Box
-          sx={{
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: -20,
-          }}
-        >
-          <InputField addTodo={addTodo} />
-          <TodoList todos={todos} />
-        </Box>
+        <InputField addTodo={addTodo} />
+        <TodoList todos={todos} />
       </Box>
     </div>
   );
