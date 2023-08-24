@@ -18,6 +18,10 @@ const TodoList = ({ todos }) => {
     });
   };
 
+  const handleDeleteIconClick = (id) => () => {
+    console.log(id)
+  };
+
   return (
     <div>
       <Box
@@ -38,13 +42,16 @@ const TodoList = ({ todos }) => {
                 <IconButton edge="end" aria-label="edit">
                   <EditIcon />
                 </IconButton>
-                <IconButton edge="end" aria-label="delete">
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={handleDeleteIconClick(todo.id)}
+                >
                   <DeleteIcon />
                 </IconButton>
               </ListItem>
             ))}
           </List>
-          
         </nav>
       </Box>
     </div>
