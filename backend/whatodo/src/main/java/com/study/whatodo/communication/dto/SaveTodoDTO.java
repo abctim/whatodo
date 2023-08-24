@@ -1,6 +1,6 @@
 package com.study.whatodo.communication.dto;
 
-public class TodoRequestDTO {
+public class SaveTodoDTO {
     private String text;
 
     public String getText() {

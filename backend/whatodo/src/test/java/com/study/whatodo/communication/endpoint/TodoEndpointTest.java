@@ -1,6 +1,6 @@
 package com.study.whatodo.communication.endpoint;
 
-import com.study.whatodo.communication.dto.TodoRequestDTO;
+import com.study.whatodo.communication.dto.SaveTodoDTO;
 import com.study.whatodo.persistence.model.Todo;
 import com.study.whatodo.service.TodoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +30,7 @@ public class TodoEndpointTest {
     public void saveTodoTest() {
         // Arrange
         String text = "Study for the test";
-        TodoRequestDTO requestDTO = new TodoRequestDTO();
+        SaveTodoDTO requestDTO = new SaveTodoDTO();
         requestDTO.setText(text);
         Todo todo = new Todo(text);
         when(todoService.save(any(Todo.class))).thenReturn(todo); // Using any() matcher
