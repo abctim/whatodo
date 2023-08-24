@@ -11,6 +11,11 @@ const Dashboard = () => {
     setTodos((previousTodos) => [...previousTodos, newTodo]);
   };
 
+  const deleteTodo = (idToDelete) => {
+    setTodos((previousTodos) => previousTodos.filter(todo => todo.id !== idToDelete));
+  };
+  
+
   return (
     <div>
       <Box
@@ -25,7 +30,7 @@ const Dashboard = () => {
       >
         <MUIAppBar />
         <InputField addTodo={addTodo} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} deleteTodo={deleteTodo} />
       </Box>
     </div>
   );
