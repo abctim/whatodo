@@ -22,20 +22,17 @@ public class TodoEndpoint {
         this.todoService = todoService;
     }
 
-    @CrossOrigin
     @PostMapping("/save")
     public Todo saveTodo(@RequestBody SaveTodoDTO saveTodoDTO) {
       Todo todo = new Todo(saveTodoDTO.getText());
       return todoService.save(todo);
     }
 
-    @CrossOrigin
     @GetMapping("/get-all")
     public List<Todo> getAllTodos() {
         return todoService.getAllTodos();
     }
 
-    @CrossOrigin
     @DeleteMapping ("/delete")
     public ResponseEntity<Void> deleteTodo(@RequestBody DeleteTodoDTO deleteTodoDTO) {
         try {
