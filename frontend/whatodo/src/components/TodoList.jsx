@@ -7,6 +7,8 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
+import axios from "axios";
+import { DELETE_TODO_URL } from "../data/apiConstants";
 
 const TodoList = ({ todos }) => {
   const [checked, setChecked] = useState({}); // Using an object to keep track of individual checkboxes
@@ -19,7 +21,16 @@ const TodoList = ({ todos }) => {
   };
 
   const handleDeleteIconClick = (id) => () => {
-    console.log(id)
+    const requestBody = { id: id };
+
+    axios
+      .delete(DELETE_TODO_URL, { data: requestBody })
+      .then((response) => {
+        console.log("Todo deleted:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error deleting todo:", error);
+      });
   };
 
   return (
