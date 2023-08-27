@@ -24,6 +24,5 @@ public class TodoService {
         return todoRepository.findAll();
     }
 
-    public void deleteTodo(Long id) { todoRepository.deleteById(id);
-    }
+    public void deleteTodo(Long id) { todoRepository.deleteById(id); }
 }

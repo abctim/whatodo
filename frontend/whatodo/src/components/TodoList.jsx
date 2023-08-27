@@ -9,9 +9,12 @@ import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
 import { DELETE_TODO_URL } from "../data/apiConstants";
+import { TextField } from "@mui/material";
 
-const TodoList = ({ todos, deleteTodo }) => {
-  const [checked, setChecked] = useState({}); // Using an object to keep track of individual checkboxes
+const TodoList = ({ todos, deleteTodo, editTodo }) => {
+  const [checked, setChecked] = useState({});
+  const [editingId, setEditingId] = useState(null);
+  const [editingText, setEditingText] = useState("");
 
   const handleCheckBoxClick = (id) => (event) => {
     setChecked({
@@ -50,8 +53,29 @@ const TodoList = ({ todos, deleteTodo }) => {
                   checked={checked[todo.id] || false}
                   onChange={handleCheckBoxClick(todo.id)}
                 />
-                <ListItemText primary={todo.text} />
-                <IconButton edge="end" aria-label="edit">
+                {editingId === todo.id ? (
+                  <TextField
+                    value={editingText}
+                    onChange={(e) => setEditingText(e.target.value)}
+                  />
+                ) : (
+                  <ListItemText primary={todo.text} />
+                )}
+                <IconButton
+                  edge="end"
+                  aria-label="edit"
+                  onClick={() => {
+                    if (editingId === todo.id) {
+                      // Call the editTodo function when done editing
+                      editTodo(todo.id, editingText);
+                      setEditingId(null);
+                      setEditingText("");
+                    } else {
+                      setEditingId(todo.id);
+                      setEditingText(todo.text);
+                    }
+                  }}
+                >
                   <EditIcon />
                 </IconButton>
                 <IconButton
