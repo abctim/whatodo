@@ -18,9 +18,12 @@ const Dashboard = () => {
   };
 
   const editTodo = (id, newText) => {
-    setTodos((previousTodos) => previousTodos.map(todo => todo.id === id ? {...todo, text: newText} : todo));
+    setTodos((previousTodos) =>
+      previousTodos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
   };
-  
 
   return (
     <div>
@@ -29,14 +32,31 @@ const Dashboard = () => {
           display: "flex",
           flexDirection: "column",
           minHeight: "calc(100vh - 64px)",
+          position: "relative",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: -20,
         }}
       >
         <MUIAppBar />
-        <InputField addTodo={addTodo} />
-        <TodoList todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
+
+        {/* Combined container for InputField and TodoList */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%", // Position at the center
+            width: "100%", // Take full width
+            px: 2,
+          }}
+        >
+          <InputField addTodo={addTodo} />
+          <Box mt={2}>
+            <TodoList
+              todos={todos}
+              deleteTodo={deleteTodo}
+              editTodo={editTodo}
+            />
+          </Box>
+        </Box>
       </Box>
     </div>
   );
