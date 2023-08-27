@@ -37,6 +37,29 @@ const TodoList = ({ todos, deleteTodo, editTodo }) => {
       });
   };
 
+  const handleEditClick = (todo) => {
+    if (editingId === todo.id) {
+      // Update todo item on the backend
+      axios
+        .post(EDIT_TODO_URL, {
+          id: todo.id,
+          newText: editingText,
+        })
+        .then((response) => {
+          // Update the frontend list upon successful update on the backend
+          editTodo(todo.id, editingText);
+          setEditingId(null);
+          setEditingText("");
+        })
+        .catch((error) => {
+          console.error("Error editing todo:", error);
+        });
+    } else {
+      setEditingId(todo.id);
+      setEditingText(todo.text);
+    }
+  };
+
   return (
     <div>
       <Box
@@ -64,20 +87,11 @@ const TodoList = ({ todos, deleteTodo, editTodo }) => {
                 <IconButton
                   edge="end"
                   aria-label="edit"
-                  onClick={() => {
-                    if (editingId === todo.id) {
-                      // Call the editTodo function when done editing
-                      editTodo(todo.id, editingText);
-                      setEditingId(null);
-                      setEditingText("");
-                    } else {
-                      setEditingId(todo.id);
-                      setEditingText(todo.text);
-                    }
-                  }}
+                  onClick={() => handleEditClick(todo)}
                 >
                   <EditIcon />
                 </IconButton>
+
                 <IconButton
                   edge="end"
                   aria-label="delete"
