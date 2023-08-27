@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
-import { DELETE_TODO_URL } from "../data/apiConstants";
+import { DELETE_TODO_URL, EDIT_TODO_URL } from "../data/apiConstants";
 import { TextField } from "@mui/material";
 
 const TodoList = ({ todos, deleteTodo, editTodo }) => {
@@ -43,7 +43,7 @@ const TodoList = ({ todos, deleteTodo, editTodo }) => {
       axios
         .post(EDIT_TODO_URL, {
           id: todo.id,
-          newText: editingText,
+          text: editingText,
         })
         .then((response) => {
           // Update the frontend list upon successful update on the backend
