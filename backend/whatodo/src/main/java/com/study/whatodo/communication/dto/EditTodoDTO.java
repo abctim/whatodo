@@ -15,12 +15,4 @@ public class EditTodoDTO {
     public void setText(String text) {
         this.text = text;
     }
-
-    @Override
-    public String toString() {
-        return "EditTodoDTO{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                '}';
-    }
 }

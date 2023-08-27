@@ -47,9 +47,6 @@ public class TodoEndpoint {
 
     @PostMapping("/edit")
     public ResponseEntity<Todo> editTodo(@RequestBody EditTodoDTO editTodoDTO) {
-
-        System.out.println("Received edit request: " + editTodoDTO);
-
         Optional<Todo> optionalTodo = todoService.findById(editTodoDTO.getId());
         if (optionalTodo.isPresent()) {
             Todo todo = optionalTodo.get();
