@@ -31,25 +31,33 @@ const Dashboard = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          minHeight: "calc(100vh - 64px)",
-          position: "relative",
-          alignItems: "center",
-          justifyContent: "center",
+          minHeight: "100vh",
         }}
       >
         <MUIAppBar />
 
-        {/* Combined container for InputField and TodoList */}
         <Box
           sx={{
-            position: "absolute",
-            top: "50%", // Position at the center
-            width: "100%", // Take full width
-            px: 2,
+            position: "relative",
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <InputField addTodo={addTodo} />
-          <Box mt={2}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "20%",
+              transform: "translateY(-50%)",
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
+            <InputField addTodo={addTodo} />
+          </Box>
+
+          <Box mt={35}>
             <TodoList
               todos={todos}
               deleteTodo={deleteTodo}
