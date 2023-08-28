@@ -7,12 +7,8 @@ The focus will be on learning, and unnecessary details will be avoided to keep t
 ### Focus Areas
 - Java 
 - JUnit 
-- Mockito
 - Spring Framework
 - Spring Web 
 - Spring Data JPA 
-- Spring Security 
-- Spring tests 
-- Spring security tests 
 - JavaScript
 - React with Vite
