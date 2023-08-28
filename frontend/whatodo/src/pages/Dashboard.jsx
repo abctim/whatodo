@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (newTodo) => {
-    setTodos((previousTodos) => [...previousTodos, newTodo]);
+    setTodos((previousTodos) => [newTodo, ...previousTodos]);
   };
 
   const deleteTodo = (idToDelete) => {
