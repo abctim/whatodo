@@ -26,47 +26,32 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
+      <MUIAppBar />
+
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          minHeight: "100vh",
+          alignItems: "center",
+          mt: 25,
+          width: "100%",
         }}
       >
-        <MUIAppBar />
-
-        <Box
-          sx={{
-            position: "relative",
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "20%",
-              transform: "translateY(-50%)",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            <InputField addTodo={addTodo} />
-          </Box>
-
-          <Box mt={35}>
-            <TodoList
-              todos={todos}
-              deleteTodo={deleteTodo}
-              editTodo={editTodo}
-            />
-          </Box>
-        </Box>
+        <InputField addTodo={addTodo} />
+        <TodoList
+          todos={todos}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+        />
       </Box>
-    </div>
+    </Box>
   );
 };
 
