@@ -1,6 +1,7 @@
 package com.study.whatodo.communication.endpoint;
 
 import com.study.whatodo.communication.dto.DeleteTodoDTO;
+import com.study.whatodo.communication.dto.EditTodoDTO;
 import com.study.whatodo.communication.dto.SaveTodoDTO;
 import com.study.whatodo.persistence.model.Todo;
 import com.study.whatodo.service.TodoService;
@@ -11,9 +12,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -80,5 +84,26 @@ public class TodoEndpointTest {
 
     @Test
     void editTodo() {
+        // Arrange
+        Long id = 1L;
+        String newText = "New String";
+        EditTodoDTO editTodoDTO = new EditTodoDTO();
+        editTodoDTO.setId(id);
+        editTodoDTO.setText(newText);
+
+        Todo existingTodo = new Todo("Old String");
+        when(todoService.findById(id)).thenReturn(Optional.of(existingTodo));
+
+        // Act
+        ResponseEntity<Todo> response = todoEndpoint.editTodo(editTodoDTO);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(newText, Objects.requireNonNull(response.getBody()).getText());
+
+        // Test for NotFound case
+        when(todoService.findById(id)).thenReturn(Optional.empty());
+        response = todoEndpoint.editTodo(editTodoDTO);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }
