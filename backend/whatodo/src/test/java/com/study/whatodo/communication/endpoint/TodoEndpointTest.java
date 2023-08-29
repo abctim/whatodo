@@ -9,6 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -41,6 +44,22 @@ public class TodoEndpointTest {
         // Assert
         assertEquals(todo, result);
     }
-}
 
-/*TODO refactor and really understand the test*/
+    @Test
+    public void getAllTodos() {
+        List<Todo> todoList = Arrays.asList(new Todo("First Test"), new Todo("Second Test"));
+        when(todoService.getAllTodos()).thenReturn(todoList);
+
+        List<Todo> result = todoEndpoint.getAllTodos();
+
+        assertEquals(todoList.size(), result.size());
+    }
+
+    @Test
+    void deleteTodo() {
+    }
+
+    @Test
+    void editTodo() {
+    }
+}
